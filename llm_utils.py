@@ -1,5 +1,6 @@
 import json
 import ollama
+from models import ExtractedQuote
 
 SYSTEM_PROMPT = """
 Tu aides un artisan à extraire les travaux réellement demandés dans une note de chantier.
@@ -41,5 +42,6 @@ def extract_lines(note):
         )
     
     raw_text = response["message"]["content"]
-    data = json.loads(raw_text)
+    extracted_quote = ExtractedQuote.model_validate_json(raw_text)
+    data = extracted_quote.model_dump()
     return data["lines"]
