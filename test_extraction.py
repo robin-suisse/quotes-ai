@@ -1,4 +1,3 @@
-from pydantic import ValidationError
 from llm_utils import extract_lines
 
 test_notes = [
@@ -21,7 +20,7 @@ for note in test_notes:
         lines = extract_lines(note)
         print("OK : ", len(lines), 'ligne(s)')
         accepted+=1
-    except ValidationError as error:
+    except ValueError as error:
         print("REFUSÉ : ", error)
         refused+=1
     print("")

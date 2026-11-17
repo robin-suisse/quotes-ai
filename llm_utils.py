@@ -1,6 +1,6 @@
-import json
 import ollama
 from models import ExtractedQuote
+from pydantic import ValidationError
 
 SYSTEM_PROMPT = """
 Tu aides un artisan à extraire les travaux réellement demandés dans une note de chantier.
@@ -30,18 +30,32 @@ Réponse :
 {"lines": []}
 """
 
+MAX_ATTEMPTS = 3
+
 def extract_lines(note):
-    response = ollama.chat(
-            model="llama3.2",
-            messages=[
-                {"role": "system", "content": SYSTEM_PROMPT},
-                {"role": "user", "content": note},
-            ],
-            format="json",
-            options={"temperature": 0},
-        )
+    messages = [
+        {"role": "system", "content": SYSTEM_PROMPT},
+        {"role": "user", "content": note},
+    ]
+    for attempt in range(1, MAX_ATTEMPTS + 1):  
+        response = ollama.chat(
+                model="llama3.2",
+                messages=messages,
+                format="json",
+                options={"temperature": 0},
+            )
+        raw_text = response["message"]["content"]
+
+        try:
+            extracted_quote = ExtractedQuote.model_validate_json(raw_text)
+            return extracted_quote.model_dump()["lines"]
+        except ValidationError as error:
+            messages.append({"role": "assistant", "content": raw_text})
+            messages.append({"role": "user", 
+                            "content": f"Ta réponse ne respecte pas le format : {error}. Corrige-la et renvoie uniquement le JSON."
+                            })
+
+    raise ValueError(f"Réponse invalide après {MAX_ATTEMPTS} essais")
+
     
-    raw_text = response["message"]["content"]
-    extracted_quote = ExtractedQuote.model_validate_json(raw_text)
-    data = extracted_quote.model_dump()
-    return data["lines"]
+    
