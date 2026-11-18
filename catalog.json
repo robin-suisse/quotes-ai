@@ -1,0 +1,62 @@
+{
+  "DEPOSE_CARRELAGE": {
+    "label": "Dépose de carrelage",
+    "unit": "m2",
+    "price": 25
+  },
+  "POSE_CARRELAGE_SOL": {
+    "label": "Pose de carrelage au sol",
+    "unit": "m2",
+    "price": 65
+  },
+  "POSE_CARRELAGE_MURAL": {
+    "label": "Pose de carrelage mural",
+    "unit": "m2",
+    "price": 75
+  },
+  "ETANCHEITE_DOUCHE": {
+    "label": "Étanchéité sous carrelage de douche",
+    "unit": "m2",
+    "price": 45
+  },
+  "REMPLACEMENT_MITIGEUR": {
+    "label": "Remplacement de mitigeur",
+    "unit": "u",
+    "price": 120
+  },
+  "POSE_MEUBLE_VASQUE": {
+    "label": "Pose d’un meuble vasque",
+    "unit": "u",
+    "price": 280
+  },
+  "INSTALLATION_DOUCHE": {
+    "label": "Installation d’une douche",
+    "unit": "u",
+    "price": 850
+  },
+  "POSE_PLAN_TRAVAIL": {
+    "label": "Pose d’un plan de travail de cuisine",
+    "unit": "ml",
+    "price": 90
+  },
+  "POSE_CREDENCE": {
+    "label": "Pose d’une crédence carrelée",
+    "unit": "m2",
+    "price": 70
+  },
+  "PEINTURE_MURS": {
+    "label": "Peinture des murs",
+    "unit": "m2",
+    "price": 28
+  },
+  "POSE_PARQUET_STRATIFIE": {
+    "label": "Pose de parquet stratifié",
+    "unit": "m2",
+    "price": 35
+  },
+  "POSE_PLINTHES": {
+    "label": "Pose de plinthes",
+    "unit": "ml",
+    "price": 12
+  }
+}
