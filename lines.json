@@ -1,9 +1,0 @@
-[
-  {"description": "Dépose carrelage", "quantity": 12, "unit": "m2", "price_per_unit": 25},
-  {"description": "Pose de faïence", "quantity": 12, "unit": "m2", "price_per_unit": 45},
-  {"description": "Remplacement mitigeur", "quantity": 1, "unit": "u", "price_per_unit": 120},
-  {"description": "Joint silicone", "quantity": 5, "unit": "ml", "price_per_unit": 8},
-  {"description": "", "quantity": 2, "unit": "u", "price_per_unit": 50},
-  {"description": "Peinture plafond", "quantity": 0, "unit": "m2", "price_per_unit": 20},
-  {"description": "Plinthes", "quantity": 10, "unit": "metres", "price_per_unit": 6}
-]
