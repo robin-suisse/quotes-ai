@@ -15,3 +15,9 @@ def price_lines(lines, catalog):
         else:
             missing.append(line)
     return found, missing
+
+def catalog_for_prompt(catalog):
+    text = ""
+    for code in catalog:
+        text += f"- {code} : {catalog[code]['label']} ({catalog[code]['unit']})\n"
+    return text
