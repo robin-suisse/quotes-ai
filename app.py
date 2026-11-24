@@ -4,7 +4,7 @@ from llm_utils import extract_lines
 from quotes_utils import quote_totals
 
 st.title("Quotes AI")
-st.write("Transform tradespeoples site notes into a priced quote")
+st.write("Transforme les notes du site des artisans en devis chiffré.")
 catalog = load_catalog()
 note = st.text_area("Notes de chantier")
 if st.button("générer le devis"):
