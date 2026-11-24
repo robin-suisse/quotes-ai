@@ -33,3 +33,14 @@ def print_quote(lines, allowed_units, vat_rate):
     print(f"Total HT: {total_excl_vat:.2f} €")
     print(f"TVA ({vat_rate} %): {vat:.2f} €")
     print(f"Total TTC: {incl_vat:.2f} €")
+
+def quote_totals(lines, vat_rate):
+    total_excl_vat = 0
+    
+    for line in lines:
+        price = line_total(line)
+        total_excl_vat += price
+    
+    vat = total_excl_vat * vat_rate/100
+    incl_vat = total_excl_vat + vat
+    return {"excl_vat": total_excl_vat, "vat": vat, "incl_vat": incl_vat}
