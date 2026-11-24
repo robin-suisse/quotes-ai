@@ -9,7 +9,9 @@ def price_lines(lines, catalog):
     missing = []
     for line in lines:
         code = line["code"]
-        if code in catalog:
+        if line.get("price_per_unit") is not None:
+            found.append(line)
+        elif code in catalog:
             line["price_per_unit"] = catalog[code]["price"]
             found.append(line)
         else:
