@@ -30,6 +30,11 @@ Note : « Dans la cuisine, poser du carrelage sur 8 m2 à 40 € le m2 et peindr
 Réponse :
 {"lines": [{"code": "POSE_CARRELAGE_SOL", "description": "Pose de carrelage", "quantity": 8, "unit": "m2", "price_per_unit": 40}, {"code": "PEINTURE_MURS", "description": "Peinture des murs", "quantity": 20, "unit": "m2", "price_per_unit": null}]}
 
+Exemple de travail absent du catalogue :
+Note : « Pose de lambris 15 m2 à 30 € le m2 »
+Réponse :
+{"lines": [{"code": "AUTRE", "description": "Pose de lambris", "quantity": 15, "unit": "m2", "price_per_unit": 30}]}
+
 Exemple sans travaux :
 Note : « Le client veut que ce soit fini avant Noël. »
 Réponse :
@@ -39,16 +44,17 @@ Réponse :
 MAX_ATTEMPTS = 3
 
 def extract_lines(note, catalog):
-    full_prompt = SYSTEM_PROMPT + "\nCatalogue des prestations :\n" + catalog_for_prompt(catalog)
+    full_prompt = SYSTEM_PROMPT
     messages = [
         {"role": "system", "content": full_prompt},
         {"role": "user", "content": note},
     ]
     for attempt in range(1, MAX_ATTEMPTS + 1):  
         response = ollama.chat(
-                model="llama3.2",
+                model="qwen3:8b",
                 messages=messages,
                 format="json",
+                think=False,
                 options={"temperature": 0},
             )
         raw_text = response["message"]["content"]
